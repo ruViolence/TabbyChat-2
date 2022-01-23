@@ -110,7 +110,7 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
         // chat filters
         ichat = chatevent.text;
         id = chatevent.id;
-        if (ichat != null && !ichat.getUnformattedText().isEmpty()) {
+        if (ichat != null) {
             if (id != 0) {
                 // send removable msg to current channel
                 chatevent.channels.clear();
