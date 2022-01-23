@@ -8,15 +8,12 @@ import mnm.mods.tabbychat.api.Message;
 import mnm.mods.tabbychat.api.events.MessageAddedToChannelEvent;
 import mnm.mods.tabbychat.gui.ChatArea;
 import mnm.mods.tabbychat.gui.settings.GuiSettingsChannel;
-import mnm.mods.tabbychat.util.ChannelPatterns;
-import mnm.mods.tabbychat.util.ChatTextUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
 
 public class ChatChannel implements Channel {
 
@@ -160,13 +157,6 @@ public class ChatChannel implements Channel {
         if (event.text == null) {
             return;
         }
-        if (TabbyChat.getInstance().settings.advanced.hideTag.get() && this != DEFAULT_CHANNEL) {
-            ChannelPatterns pattern = TabbyChat.getInstance().serverSettings.general.channelPattern.get();
-            Matcher matcher = pattern.getPattern().matcher(event.text.getUnformattedText());
-            if (matcher.find()) {
-                event.text = ChatTextUtils.subChat(event.text, matcher.end());
-            }
-        }
 
         int uc = Minecraft.getMinecraft().ingameGUI.getUpdateCounter();
         Message msg = new ChatMessage(uc, event.text, id, true);
@@ -180,7 +170,6 @@ public class ChatChannel implements Channel {
 
         trim(TabbyChat.getInstance().settings.advanced.historyLen.get());
 
-        ((ChatManager) TabbyChat.getInstance().getChat()).save();
         dirty();
     }
 
@@ -194,14 +183,12 @@ public class ChatChannel implements Channel {
     @Override
     public void removeMessageAt(int pos) {
         this.getMessages().remove(pos);
-        ((ChatManager) TabbyChat.getInstance().getChat()).save();
         dirty();
     }
 
     @Override
     public void removeMessages(int id) {
         this.getMessages().removeIf(msg -> msg.getID() == id);
-        ((ChatManager) TabbyChat.getInstance().getChat()).save();
         dirty();
     }
 

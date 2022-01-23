@@ -5,13 +5,6 @@ tabbychat.formats.messages.arrow=A -> M
 tabbychat.formats.messages.toFrom=Till/Från
 tabbychat.formats.messages.disabled=Inaktiverat
 
-tabbychat.delims.angles=<Vinklar>
-tabbychat.delims.braces={Klammrar}
-tabbychat.delims.brackets=[Hakar]
-tabbychat.delims.parenthesis=(Parenteser)
-tabbychat.delims.anglesparens=<(Komb.)Pl.>
-tabbychat.delims.anglesbrackets=<[Komb.]Pl.>
-
 tabbychat.settings.title=TabbyChat 2 Inställningar
 tabbychat.settings.save=Spara
 tabbychat.settings.close=Stäng
@@ -26,24 +19,8 @@ tabbychat.settings.general.logChat=Logga Chatt
 tabbychat.settings.general.logChat.desc=Sparar inkommande meddelanden i loggfilerna
 tabbychat.settings.general.splitLog=Dela logg
 tabbychat.settings.general.splitLog.desc=Delar loggen efter kanal. Har ingen\neffekt om 'Logga Chatt' är inaktiverat.
-tabbychat.settings.general.timestamp=Datumstämpla Chatt
-tabbychat.settings.general.timestamp.style=Stil
-tabbychat.settings.general.timestamp.color=Färg
-tabbychat.settings.general.antispam=Antispam
-tabbychat.settings.general.antispam.desc=Tar bort spam i chatten
-tabbychat.settings.general.antispam.prejudice=Skillnad
-tabbychat.settings.general.antispam.prejudice.desc=Hur olika två meddelanden kan vara för att räknas som spam.
 tabbychat.settings.general.unreadFlashing=Oläst Blinkar
-tabbychat.settings.general.checkUpdates=Kolla efter uppdateringar
 
-tabbychat.settings.server.channelsEnabled=Aktivera kanaler
-tabbychat.settings.server.channelsEnabled.desc=Sök i chatten efter nya kanaler
-tabbychat.settings.server.pmEnabled=Aktivera privata meddelanden
-tabbychat.settings.server.pmEnabled.desc=Sök i chatten efter nya privata meddelanden
-tabbychat.settings.server.channelPattern=Kanalmönster
-tabbychat.settings.server.channelPattern.desc=Förinställda eller egna mönster för att upptäcka kanaler
-tabbychat.settings.server.messagePattern=Meddelandemönster
-tabbychat.settings.server.messagePattern.desc=Förinställda eller egna mönster för att upptäcka privata meddelanden
 tabbychat.settings.server.useDefault=Använd standardkanalen
 tabbychat.settings.server.ignoredChannels=Ignorerade kanaler
 tabbychat.settings.server.ignoredChannels.desc=Kanaler att ignorera.
@@ -80,8 +57,6 @@ tabbychat.settings.colors.chattext=Textfärg
 
 tabbychat.settings.advanced.fadetime=Borttagningstid (ticks)
 tabbychat.settings.advanced.chatvisibility=Chattsynlighet
-tabbychat.settings.advanced.hidedelims=Göm kanaldelare*
-tabbychat.settings.advanced.spellcheck=Aktivera rättstavning
 
 tabbychat.settings.experimental=* Experimentell och fungerar kanske inte korrekt.
 

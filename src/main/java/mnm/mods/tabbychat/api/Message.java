@@ -17,13 +17,6 @@ public interface Message {
     ITextComponent getMessage();
 
     /**
-     * Gets the message with a time stamp if they are enabled.
-     *
-     * @return The time-stamped message
-     */
-    ITextComponent getMessageWithOptionalTimestamp();
-
-    /**
      * Gets the update counter used for this message.
      *
      * @return The counter

@@ -51,7 +51,6 @@ configurations {
     compile.extendsFrom shadow
 }
 dependencies {
-    shadow 'net.sf.jazzy:jazzy:0.5.2-rtext-1.4.1-2'
     testCompile 'junit:junit:4.12'
 
 }

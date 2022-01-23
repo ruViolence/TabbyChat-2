@@ -1,8 +1,6 @@
 package mnm.mods.tabbychat.extra.filters;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.eventbus.Subscribe;
 import mnm.mods.tabbychat.TabbyChat;
@@ -12,7 +10,6 @@ import mnm.mods.tabbychat.api.filters.FilterEvent;
 import mnm.mods.tabbychat.settings.ServerSettings;
 import net.minecraft.client.Minecraft;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -23,12 +20,7 @@ public class FilterAddon {
 
     private static Map<String, Optional<Supplier<String>>> variables = Maps.newHashMap();
 
-    private List<Filter> filters = Lists.newArrayList();
-
     public FilterAddon() {
-        filters.add(new ChannelFilter());
-        filters.add(new MessageFilter());
-
         variables.clear();
 
         Minecraft mc = Minecraft.getMinecraft();
@@ -59,7 +51,7 @@ public class FilterAddon {
             return;
         }
 
-        for (Filter filter : Iterables.concat(filters, settings.filters)) {
+        for (Filter filter : settings.filters) {
             Matcher matcher = filter.getPattern().matcher(filter.prepareText(message.text));
             while (matcher.find()) {
                 FilterEvent event = new FilterEvent(matcher, message.channels, message.text);

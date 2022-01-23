@@ -2,11 +2,8 @@ package mnm.mods.tabbychat.gui;
 
 import com.google.common.eventbus.Subscribe;
 import mnm.mods.tabbychat.ChatManager;
-import mnm.mods.tabbychat.TabbyChat;
 import mnm.mods.tabbychat.api.gui.ChatInput;
 import mnm.mods.tabbychat.core.GuiNewChatTC;
-import mnm.mods.tabbychat.extra.spell.Spellcheck;
-import mnm.mods.tabbychat.extra.spell.SpellingFormatter;
 import mnm.mods.util.Color;
 import mnm.mods.util.TexturedModal;
 import mnm.mods.util.gui.GuiComponent;
@@ -42,14 +39,11 @@ public class TextBox extends GuiComponent implements ChatInput {
         }
     });
     private int cursorCounter;
-    private Spellcheck spellcheck;
 
     TextBox() {
         textField.getTextField().setMaxStringLength(ChatManager.MAX_CHAT_LENGTH);
         textField.setFocused(true);
         textField.getTextField().setCanLoseFocus(false);
-
-        spellcheck = TabbyChat.getInstance().getSpellcheck();
     }
 
     @Override
@@ -224,12 +218,6 @@ public class TextBox extends GuiComponent implements ChatInput {
 
     private List<ITextComponent> getFormattedLines() {
         List<String> lines = getWrappedLines();
-        if (TabbyChat.getInstance().settings.advanced.spelling.get()) {
-            spellcheck.checkSpelling(textField.getValue());
-            return lines.stream()
-                    .map(new SpellingFormatter(spellcheck))
-                    .collect(Collectors.toList());
-        }
         return lines.stream()
                 .map(TextComponentString::new)
                 .collect(Collectors.toList());

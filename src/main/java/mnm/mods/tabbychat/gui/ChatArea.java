@@ -119,7 +119,7 @@ public class ChatArea extends GuiComponent implements ReceivedChat {
     }
 
     private void drawChatLine(Message line, int xPos, int yPos) {
-        String text = line.getMessageWithOptionalTimestamp().getFormattedText();
+        String text = line.getMessage().getFormattedText();
         mc.fontRenderer.drawStringWithShadow(text, xPos, yPos, Color.WHITE.getHex() + (getLineOpacity(line) << 24));
     }
 
@@ -241,7 +241,7 @@ public class ChatArea extends GuiComponent implements ReceivedChat {
                     Message chatline = list.get(linePos);
                     float x = actual.getXPos() + 3;
 
-                    for (ITextComponent ichatcomponent : chatline.getMessageWithOptionalTimestamp()) {
+                    for (ITextComponent ichatcomponent : chatline.getMessage()) {
                         if (ichatcomponent instanceof TextComponentString) {
 
                             // get the text of the component, no children.

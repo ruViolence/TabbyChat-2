@@ -23,14 +23,6 @@ public abstract class TabbyAPI {
     }
 
     /**
-     * Retrieve TabbyChat's version data. Version data contains the readable
-     * version string and comparable double.
-     *
-     * @return The version data
-     */
-    public abstract VersionData getVersionData();
-
-    /**
      * Gets the chat.
      *
      * @return The chat

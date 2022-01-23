@@ -28,7 +28,7 @@ public class ChatTextUtils {
             Iterator<Message> iter = list.iterator();
             while (iter.hasNext() && result.size() <= 100) {
                 Message line = iter.next();
-                List<ITextComponent> chatlist = split(line.getMessageWithOptionalTimestamp(), width);
+                List<ITextComponent> chatlist = split(line.getMessage(), width);
                 for (int i = chatlist.size() - 1; i >= 0; i--) {
                     ITextComponent chat = chatlist.get(i);
                     result.add(new ChatMessage(line.getCounter(), chat, line.getID(), false));

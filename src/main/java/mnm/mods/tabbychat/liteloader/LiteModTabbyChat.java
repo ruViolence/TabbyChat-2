@@ -41,9 +41,6 @@ public class LiteModTabbyChat implements JoinGameListener, InitCompleteListener 
     public void onInitCompleted(Minecraft minecraft, LiteLoader loader) {
         MnmUtils utils = loader.getMod(LiteModMnmUtils.class).getUtils();
         tc.postInit(utils);
-        if (!this.tc.settings.general.checkUpdates.get()) {
-            utils.disableUpdateCheck(this.getClass());
-        }
     }
 
     @Override
