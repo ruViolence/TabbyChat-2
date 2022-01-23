@@ -2,6 +2,7 @@ package mnm.mods.tabbychat.util;
 
 import com.google.common.collect.Lists;
 import mnm.mods.tabbychat.ChatMessage;
+import mnm.mods.tabbychat.TabbyChat;
 import mnm.mods.tabbychat.api.Message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -26,7 +27,9 @@ public class ChatTextUtils {
         synchronized (list) {
             List<Message> result = Lists.newArrayList();
             Iterator<Message> iter = list.iterator();
-            while (iter.hasNext() && result.size() <= 100) {
+            int historyLength = TabbyChat.getInstance().settings.advanced.historyLen.get();
+            while (iter.hasNext()) {
+                if (result.size() >= historyLength) break;
                 Message line = iter.next();
                 List<ITextComponent> chatlist = split(line.getMessage(), width);
                 for (int i = chatlist.size() - 1; i >= 0; i--) {
