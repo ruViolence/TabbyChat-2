@@ -2,7 +2,6 @@ package mnm.mods.tabbychat.core;
 
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
-import com.google.common.util.concurrent.Runnables;
 import mnm.mods.tabbychat.ChatChannel;
 import mnm.mods.tabbychat.ChatManager;
 import mnm.mods.tabbychat.TabbyChat;
@@ -56,12 +55,10 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
 
     @Override
     public void clearChatMessages(boolean sent) {
-        checkThread(() -> {
-            chat.clearMessages();
-            if (sent) {
-                this.getSentMessages().clear();
-            }
-        }).run();
+        chat.clearMessages();
+        if (sent) {
+            this.getSentMessages().clear();
+        }
     }
 
     @Override
@@ -99,7 +96,7 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
 
     @Override
     public void printChatMessageWithOptionalDeletion(ITextComponent ichat, int id) {
-        checkThread(() -> this.addMessage(ichat, id)).run();
+        this.addMessage(ichat, id);
     }
 
     public void addMessage(ITextComponent ichat, int id) {
@@ -138,16 +135,7 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
 
     @Override
     public void deleteChatLine(int id) {
-        checkThread(() -> chat.removeMessages(id)).run();
-    }
-
-    private Runnable checkThread(Runnable runnable) {
-        if (!mc.isCallingFromMinecraftThread()) {
-            mc.addScheduledTask(runnable);
-            TabbyChat.getLogger().warn("Tried to modify chat from thread {}. To prevent a crash, it has been scheduled on the main thread.", Thread.currentThread().getName(), new Exception());
-            return Runnables.doNothing();
-        }
-        return runnable;
+        chat.removeMessages(id);
     }
 
     @Override
