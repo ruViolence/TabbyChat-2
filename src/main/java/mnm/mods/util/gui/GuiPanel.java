@@ -232,7 +232,7 @@ public class GuiPanel extends GuiComponent implements Iterable<GuiComponent> {
     @Nonnull
     @Override
     public Dimension getMinimumSize() {
-        Dimension size = getLayout().map(ILayout::getLayoutSize).orElseGet(() -> {
+        return getLayout().map(ILayout::getLayoutSize).orElseGet(() -> {
             int width = 0;
             int height = 0;
             for (GuiComponent gc : components) {
@@ -241,8 +241,6 @@ public class GuiPanel extends GuiComponent implements Iterable<GuiComponent> {
             }
             return new Dimension(width, height);
         });
-
-        return size;
 
     }
 

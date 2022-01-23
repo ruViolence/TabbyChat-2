@@ -15,7 +15,6 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -186,13 +185,9 @@ public class ChatChannel implements Channel {
     }
 
     private void trim(int size) {
-        Iterator<Message> iter = this.getMessages().iterator();
-
-        for (int i = 0; iter.hasNext(); i++) {
-            iter.next();
-            if (i > size) {
-                iter.remove();
-            }
+        List<Message> messages = this.getMessages();
+        while (messages.size() > size) {
+            messages.remove(messages.size() - 1);
         }
     }
 
@@ -246,11 +241,8 @@ public class ChatChannel implements Channel {
         if (isPm != other.isPm)
             return false;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else return name.equals(other.name);
     }
 
     @Override

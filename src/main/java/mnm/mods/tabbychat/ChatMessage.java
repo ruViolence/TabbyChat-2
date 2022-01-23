@@ -10,7 +10,6 @@ import mnm.mods.tabbychat.settings.GeneralSettings;
 import mnm.mods.tabbychat.util.TimeStamps;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
@@ -48,8 +47,6 @@ public class ChatMessage implements Message {
         ITextComponent chat;
         GeneralSettings settings = TabbyChat.getInstance().settings.general;
         if (date != null && settings.timestampChat.get()) {
-            chat = new TextComponentString("");
-
             TimeStamps stamp = settings.timestampStyle.get();
             TextFormatting format = settings.timestampColor.get();
             chat = new TextComponentTranslation("%s %s", format + stamp.format(date), getMessage());

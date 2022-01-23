@@ -16,10 +16,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.ITextComponent;
 import org.lwjgl.input.Mouse;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 
 public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
 
@@ -142,12 +140,6 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
     public void resetScroll() {
         chat.getChatBox().getChatArea().resetScroll();
         super.resetScroll();
-    }
-
-    @Nonnull
-    @Override
-    public List<String> getSentMessages() {
-        return super.getSentMessages();
     }
 
     public ChatManager getChatManager() {

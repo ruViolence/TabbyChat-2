@@ -67,11 +67,7 @@ public class GuiSettingsChannel extends SettingPanel<ServerSettings> {
     private void select(Channel channel) {
 
         for (GuiComponent comp : channels.getContentPanel()) {
-            if (((ChannelButton) comp).channel == channel) {
-                comp.setEnabled(false);
-            } else {
-                comp.setEnabled(true);
-            }
+            comp.setEnabled(((ChannelButton) comp).channel != channel);
         }
 
         int pos = 1;
