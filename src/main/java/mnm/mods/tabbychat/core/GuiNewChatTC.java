@@ -127,7 +127,6 @@ public class GuiNewChatTC extends GuiNewChat implements ChatScreen {
                 }
             }
             TabbyChat.getLogger().info("[CHAT] " + ichat.getUnformattedText());
-            this.chat.getChatBox().updateComponent();
         }
     }
 
