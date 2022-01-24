@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a message.
  */
@@ -39,6 +41,9 @@ public interface Message {
      * @return The date
      */
     Date getDate();
+
+    @Nullable
+    Message getParent(); 
 
 
 }

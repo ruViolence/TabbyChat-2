@@ -11,6 +11,8 @@ import mnm.mods.tabbychat.util.ChatTextUtils;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
+
 public class ChatMessage implements Message {
 
     @Expose
@@ -22,8 +24,13 @@ public class ChatMessage implements Message {
     private transient int counter;
     @Expose
     private Date date;
+    private transient Message parent;
 
     public ChatMessage(int updatedCounter, ITextComponent chat, int id, boolean isNew) {
+        this(updatedCounter, chat, id, isNew, null);
+    }
+
+    public ChatMessage(int updatedCounter, ITextComponent chat, int id, boolean isNew, Message parent) {
         // super(updatedCounter, chat, id);
         this.message = chat;
         this.id = id;
@@ -31,6 +38,7 @@ public class ChatMessage implements Message {
         if (isNew) {
             this.date = Calendar.getInstance().getTime();
         }
+        this.parent = parent;
     }
 
     public ChatMessage(ChatLine chatline) {
@@ -69,6 +77,12 @@ public class ChatMessage implements Message {
     @Override
     public Date getDate() {
         return this.date;
+    }
+
+    @Nullable
+    @Override
+    public Message getParent() {
+        return this.parent;
     }
 
 }

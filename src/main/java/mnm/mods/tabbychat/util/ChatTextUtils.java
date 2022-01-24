@@ -34,7 +34,7 @@ public class ChatTextUtils {
                 List<ITextComponent> chatlist = line.getMessageSplit(width);
                 for (int i = chatlist.size() - 1; i >= 0; i--) {
                     ITextComponent chat = chatlist.get(i);
-                    result.add(new ChatMessage(line.getCounter(), chat, line.getID(), false));
+                    result.add(new ChatMessage(line.getCounter(), chat, line.getID(), false, line));
                 }
             }
             return result;

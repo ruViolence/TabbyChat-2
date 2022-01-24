@@ -60,6 +60,15 @@ public class ChatArea extends GuiComponent implements ReceivedChat {
                 scroll(scroll);
 
             }
+        } else if (event.getType() == MouseEvent.CLICK && GuiScreen.isCtrlKeyDown()) {
+            int yPos = getBounds().height;
+            for (Message line : getVisibleChat()) {
+                yPos -= mc.fontRenderer.FONT_HEIGHT;
+                if (yPos < event.getMouseY()) {
+                    GuiScreen.setClipboardString(line.getParent().getMessage().getUnformattedText());
+                    break;
+                }
+            }
         }
     }
 
