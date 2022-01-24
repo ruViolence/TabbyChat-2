@@ -1,6 +1,7 @@
 package mnm.mods.tabbychat.api;
 
 import java.util.Date;
+import java.util.List;
 
 import net.minecraft.util.text.ITextComponent;
 
@@ -15,6 +16,8 @@ public interface Message {
      * @return The message
      */
     ITextComponent getMessage();
+    
+    List<ITextComponent> getMessageSplit(int width);
 
     /**
      * Gets the update counter used for this message.

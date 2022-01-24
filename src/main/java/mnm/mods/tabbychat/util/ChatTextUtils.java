@@ -31,7 +31,7 @@ public class ChatTextUtils {
             while (iter.hasNext()) {
                 if (result.size() >= historyLength) break;
                 Message line = iter.next();
-                List<ITextComponent> chatlist = split(line.getMessage(), width);
+                List<ITextComponent> chatlist = line.getMessageSplit(width);
                 for (int i = chatlist.size() - 1; i >= 0; i--) {
                     ITextComponent chat = chatlist.get(i);
                     result.add(new ChatMessage(line.getCounter(), chat, line.getID(), false));

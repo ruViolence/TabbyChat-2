@@ -2,10 +2,12 @@ package mnm.mods.tabbychat;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.annotations.Expose;
 
 import mnm.mods.tabbychat.api.Message;
+import mnm.mods.tabbychat.util.ChatTextUtils;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.text.ITextComponent;
 
@@ -13,6 +15,8 @@ public class ChatMessage implements Message {
 
     @Expose
     private ITextComponent message;
+    private transient int lastWidth;
+    private transient List<ITextComponent> messageSplit;
     @Expose
     private int id;
     private transient int counter;
@@ -36,6 +40,20 @@ public class ChatMessage implements Message {
     @Override
     public ITextComponent getMessage() {
         return this.message;
+    }
+
+    @Override
+    public List<ITextComponent> getMessageSplit(int width) {
+        List<ITextComponent> cachedSplit = this.messageSplit;
+
+        if (cachedSplit == null || lastWidth != width) {
+            List<ITextComponent> split = ChatTextUtils.split(getMessage(), width);
+            this.messageSplit = split;
+            this.lastWidth = width;
+            return split;
+        }
+
+        return cachedSplit;
     }
 
     @Override
