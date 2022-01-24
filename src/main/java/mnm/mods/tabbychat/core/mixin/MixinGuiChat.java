@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.ITabCompleter;
 import net.minecraft.util.TabCompleter;
+import net.minecraft.util.text.ITextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -125,5 +126,18 @@ public abstract class MixinGuiChat extends GuiScreen implements ITabCompleter {
     private void onDrawScreen(int x1, int y1, int x2, int y2, int color) {
         // noop
     }
+
+    @Redirect(
+            method = "mouseClicked(III)V",
+            require = 1,
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/gui/GuiChat;handleComponentClick(Lnet/minecraft/util/text/ITextComponent;)Z"
+            )
+    )
+    private boolean onMouseClicked(GuiChat instance, ITextComponent itextcomponent) throws IOException {
+        return !GuiScreen.isCtrlKeyDown() && this.handleComponentClick(itextcomponent);
+    }
+
 
 }
