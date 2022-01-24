@@ -161,16 +161,15 @@ public class ChatChannel implements Channel {
         int uc = Minecraft.getMinecraft().ingameGUI.getUpdateCounter();
         Message msg = new ChatMessage(uc, event.text, id, true);
         this.getMessages().add(0, msg);
+        trim(TabbyChat.getInstance().settings.advanced.historyLen.get());
+        
+        dirty();
 
         // compensate scrolling
         ChatArea chatbox = ((ChatManager) TabbyChat.getInstance().getChat()).getChatBox().getChatArea();
         if (getStatus() == ChannelStatus.ACTIVE && chatbox.getScrollPos() > 0 && id == 0) {
             chatbox.scroll(1);
         }
-
-        trim(TabbyChat.getInstance().settings.advanced.historyLen.get());
-
-        dirty();
     }
 
     private void trim(int size) {
