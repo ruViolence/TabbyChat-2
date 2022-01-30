@@ -168,7 +168,8 @@ public class ChatChannel implements Channel {
         // compensate scrolling
         ChatArea chatbox = ((ChatManager) TabbyChat.getInstance().getChat()).getChatBox().getChatArea();
         if (getStatus() == ChannelStatus.ACTIVE && chatbox.getScrollPos() > 0 && id == 0) {
-            chatbox.scroll(1);
+            List<ITextComponent> list = msg.getMessageSplit(TabbyChat.getInstance().getChat().getChatBox().getBounds().width - 6);
+            chatbox.scroll(list.size());
         }
     }
 
