@@ -159,7 +159,7 @@ public class ChatArea extends GuiComponent implements ReceivedChat {
 
         int pos = getScrollPos();
         float unfoc = TabbyChat.getInstance().settings.advanced.unfocHeight.get();
-        float div = GuiNewChatTC.getInstance().getChatOpen() ? 1 : unfoc;
+        float div = GuiNewChatTC.getInstance().getChatOpen() || TabbyChat.getInstance().settings.advanced.visibility.get() == ChatVisibility.ALWAYS ? 1 : unfoc;
         while (pos < lines.size() && length < super.getLocation().getHeight() * div - 10) {
             Message line = lines.get(pos);
 
